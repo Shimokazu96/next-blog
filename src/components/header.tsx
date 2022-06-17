@@ -27,12 +27,13 @@ const Header = () => {
                                 fill="currentColor"
                             ></svg>
                         </a>
-                        <a
-                            href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
-                        >
-                            Pricing
-                        </a>
+                        <Link href="/post">
+                            <a
+                                className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
+                            >
+                                blog
+                            </a>
+                        </Link>
                         <a
                             href="#"
                             className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
