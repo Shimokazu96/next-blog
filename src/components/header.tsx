@@ -4,17 +4,19 @@ const Header = () => {
     return (
         <div className="bg-white lg:pb-12">
             <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
-                <h1 className="text-3xl font-semibold text-center text-gray-800 hover:text-blue-800 active:text-blue-700 py-4 cursor-pointer">
-                    Sauna Bouya
-                </h1>
+                <Link href="/">
+                    <h1 className="text-3xl font-semibold text-center text-gray-800 hover:text-blue-800 active:text-blue-700 py-4 cursor-pointer">
+                        Sauna Bouya
+                    </h1>
+                </Link>
+
                 <header className="flex justify-center items-center py-4 md:py-8">
                     <nav className="hidden lg:flex gap-12">
-                        <a
-                            href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
-                        >
-                            Home
-                        </a>
+                        <Link href="/">
+                            <a className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
+                                Home
+                            </a>
+                        </Link>
                         <a
                             href="#"
                             className="inline-flex items-center text-blue-700 text-lg font-semibold gap-1"
@@ -28,9 +30,7 @@ const Header = () => {
                             ></svg>
                         </a>
                         <Link href="/post">
-                            <a
-                                className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
-                            >
+                            <a className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
                                 blog
                             </a>
                         </Link>
