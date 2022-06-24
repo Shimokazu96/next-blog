@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout";
 export default function FirstPost() {
     return (
         <Layout>
-            <div className="bg-white py-6 sm:py-8 lg:py-12">
+            <div className="lg:col-span-2">
                 <div className="max-w-screen-md px-4 md:px-8 mx-auto">
                     <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold text-center mb-4 md:mb-6">
                         Our competitive advantage
