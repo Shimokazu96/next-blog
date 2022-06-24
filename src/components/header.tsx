@@ -13,7 +13,7 @@ const Header = () => {
                 <header className="flex justify-center items-center py-4 md:py-8">
                     <nav className="hidden lg:flex gap-12">
                         <Link href="/">
-                            <a className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
+                            <a className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
                                 Home
                             </a>
                         </Link>
@@ -30,13 +30,13 @@ const Header = () => {
                             ></svg>
                         </a>
                         <Link href="/post">
-                            <a className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
+                            <a className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
                                 blog
                             </a>
                         </Link>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
+                            className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
                         >
                             About
                         </a>
