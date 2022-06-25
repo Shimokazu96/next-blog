@@ -1,34 +1,58 @@
 import type { NextPage } from "next";
+import Link from "next/link";
+import WP from "wpapi";
 import { Layout } from "@/components/layout";
 
-const Home: NextPage = () => {
+const wpClient = new WP({
+    endpoint: `${process.env.API_URL}/wp-json`,
+});
+
+export const getStaticProps = async () => {
+    const data = await wpClient.posts().perPage(10); // perPage()で表示ページ数指定
+
+    return {
+        props: {
+            posts: data,
+        },
+    };
+};
+
+const Home: NextPage = (props) => {
+    console.log(props);
+    {
+        props.posts.map((post) => console.log(post));
+    }
     return (
         <Layout>
             <div className="lg:col-span-2">
                 <div className="border-b pb-4 md:pb-6">
-                    <h2 className="text-gray-800 text-lg lg:text-xl font-bold">Top Reviews</h2>
+                    <h2 className="text-gray-800 text-lg lg:text-xl font-bold">ブログ記事一覧</h2>
                 </div>
 
                 <div className="divide-y">
-                    <div className="flex flex-col gap-3 py-4 md:py-8">
-                        <div>
-                            <span className="block text-sm font-bold">John McCulling</span>
-                            <span className="block font-semibold text-gray-500 text-sm ">
-                                August 28, 2021
-                            </span>
+                    {props.posts.map((post) => (
+                        <div key={post.id} className="flex flex-col gap-3 py-4 md:py-8">
+                            <div>
+                                <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
+                                    <a className="block text-sm font-bold">{post.title.rendered}</a>
+                                </Link>
+                                <span className="block font-semibold text-gray-500 text-sm ">
+                                    {post.date}
+                                </span>
+                            </div>
+
+                            <div className="flex gap-0.5 -ml-1"></div>
+
+                            <p className="text-gray-600 font-semibold">
+                                This is a section of some simple filler text, also known as
+                                placeholder text. It shares some characteristics of a real written
+                                text but is random or otherwise generated. It may be used to display
+                                a sample of fonts or generate text for testing.
+                            </p>
                         </div>
+                    ))}
 
-                        <div className="flex gap-0.5 -ml-1"></div>
-
-                        <p className="text-gray-600 font-semibold">
-                            This is a section of some simple filler text, also known as placeholder
-                            text. It shares some characteristics of a real written text but is
-                            random or otherwise generated. It may be used to display a sample of
-                            fonts or generate text for testing.
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col gap-3 py-4 md:py-8">
+                    {/* <div className="flex flex-col gap-3 py-4 md:py-8">
                         <div>
                             <span className="block text-sm font-bold">Kate Berg</span>
                             <span className="block font-semibold text-gray-500 text-sm ">
@@ -62,7 +86,7 @@ const Home: NextPage = () => {
                             random or otherwise generated. It may be used to display a sample of
                             fonts or generate text for testing.
                         </p>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="border-t pt-6">
