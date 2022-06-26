@@ -15,12 +15,10 @@ const wpClient = new WP({
 
 export const getStaticProps = async () => {
     const data = await wpClient.posts().perPage(10); // perPage()で表示ページ数指定
-    const categories = await wpClient.categories(); // perPage()で表示ページ数指定
 
     return {
         props: {
             posts: data,
-            categories: categories,
         },
     };
 };
@@ -34,7 +32,7 @@ const Home: NextPage = (props) => {
                 </div>
 
                 <div className="divide-y">
-                    {props.data.map((post) => (
+                    {props.posts.map((post) => (
                         <div key={post.id} className="flex flex-col gap-3 py-4 md:py-8">
                             <div>
                                 <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
