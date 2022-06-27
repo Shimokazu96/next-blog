@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="bg-white pt-4 sm:pt-10 lg:pt-12">
             <footer className="max-w-screen-2xl px-4 md:px-8 mx-auto">
                 <div className="flex flex-col items-center border-t pt-6">
-                    <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 md:gap-6 mb-4">
+                    {/* <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 md:gap-6 mb-4">
                         <a
                             href="#"
                             className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
@@ -36,7 +36,7 @@ export default function Footer() {
                         >
                             Blog
                         </a>
-                    </nav>
+                    </nav> */}
                     <div className="flex gap-4">
                         <a
                             href="#"
@@ -109,7 +109,7 @@ export default function Footer() {
                 </div>
 
                 <div className="text-gray-800 font-semibold text-sm text-center py-8">
-                    © 2021 - Present Flowrift. All rights reserved.
+                    © 2021 - Present Sauna Bouya. All rights reserved.
                 </div>
             </footer>
         </div>

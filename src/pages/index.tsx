@@ -1,17 +1,9 @@
 import { parseISO, format } from "date-fns";
 import ja from "date-fns/locale/ja";
+import { wpClient } from "@/lib/wpapi";
 import type { NextPage } from "next";
 import Link from "next/link";
-import WP from "wpapi";
 import { Layout } from "@/components/layout";
-
-// type Props = {
-//     posts: Array<string>;
-//     categories:  Array<string>;
-// };
-const wpClient = new WP({
-    endpoint: `${process.env.API_URL}/wp-json`,
-});
 
 export const getStaticProps = async () => {
     const data = await wpClient.posts().perPage(10); // perPage()で表示ページ数指定
@@ -32,28 +24,39 @@ const Home: NextPage = (props) => {
                 </div>
 
                 <div className="divide-y">
-                    {props.posts.map((post) => (
-                        <div key={post.id} className="flex flex-col gap-3 py-4 md:py-8">
-                            <div>
-                                <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
-                                    <a className="block text-sm font-bold">{post.title.rendered}</a>
-                                </Link>
-                                <span className="block font-semibold text-gray-500 text-sm ">
-                                    {format(new Date(post.date), "yyyy-MM-dd")}
-                                </span>
-                            </div>
+                    {props.posts.map(
+                        (post) => (
+                            console.log(post),
+                            (
+                                <div
+                                    key={post.id}
+                                    className="flex flex-col gap-3 py-4 md:py-8 hover:text-blue-800 active:text-blue-700"
+                                >
+                                    <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
+                                        <a>
+                                            <div>
+                                                <div className="block text-sm font-bold">
+                                                    {post.title.rendered}
+                                                </div>
+                                                <span className="block font-semibold text-gray-500 text-sm ">
+                                                    {format(new Date(post.date), "yyyy-MM-dd")}
+                                                </span>
+                                            </div>
 
-                            <div className="flex gap-0.5 -ml-1"></div>
+                                            <div className="flex gap-0.5 -ml-1"></div>
 
-                            <p className="text-gray-600 font-semibold">
-                                This is a section of some simple filler text, also known as
-                                placeholder text. It shares some characteristics of a real written
-                                text but is random or otherwise generated. It may be used to display
-                                a sample of fonts or generate text for testing.
-                            </p>
-                        </div>
-                    ))}
-
+                                            <div
+                                                dangerouslySetInnerHTML={{
+                                                    __html: post.excerpt.rendered,
+                                                }}
+                                                className="text-gray-600 font-semibold"
+                                            />
+                                        </a>
+                                    </Link>
+                                </div>
+                            )
+                        )
+                    )}
                 </div>
 
                 <div className="border-t pt-6">
