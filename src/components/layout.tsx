@@ -12,7 +12,7 @@ type LayoutProps = Required<{
 export const Layout = ({ children }: LayoutProps) => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        wpClient.categories().then((response) => {
+        wpClient.categories().orderby('count').order('desc').then((response) => {
             setCategories(response);
         });
     }, []);
