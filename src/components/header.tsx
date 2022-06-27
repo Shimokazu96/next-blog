@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 const Header = (props) => {
-    console.log(props)
     return (
         <div className="bg-white lg:pb-12">
             <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
@@ -13,34 +12,13 @@ const Header = (props) => {
 
                 <header className="flex justify-center items-center py-4 md:py-8">
                     <nav className="hidden lg:flex gap-12">
-                        <Link href="/">
-                            <a className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
-                                Home
-                            </a>
-                        </Link>
-                        <a
-                            href="#"
-                            className="inline-flex items-center text-blue-700 text-lg font-semibold gap-1"
-                        >
-                            Features
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 text-gray-800"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            ></svg>
-                        </a>
-                        <Link href="/post">
-                            <a className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
-                                blog
-                            </a>
-                        </Link>
-                        <a
-                            href="#"
-                            className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100"
-                        >
-                            About
-                        </a>
+                        {props.categories.map((category) => (
+                            <Link key={category.id} href={category.link}>
+                                <a className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
+                                    {category.name}
+                                </a>
+                            </Link>
+                        ))}
                     </nav>
                 </header>
             </div>
