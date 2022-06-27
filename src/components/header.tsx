@@ -13,7 +13,7 @@ const Header = (props) => {
                 <header className="flex justify-center items-center py-4 md:py-8">
                     <nav className="hidden lg:flex gap-12">
                         {props.categories.map((category) => (
-                            <Link key={category.id} href={category.link}>
+                            <Link key={category.id} href={`/category/${category.id}`}>
                                 <a className="text-gray-600 hover:text-blue-800 active:text-blue-700 text-lg font-semibold transition duration-100">
                                     {category.name}
                                 </a>
