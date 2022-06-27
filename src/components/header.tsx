@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-const Header = () => {
+const Header = (props) => {
+    console.log(props)
     return (
         <div className="bg-white lg:pb-12">
             <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
