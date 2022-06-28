@@ -12,7 +12,7 @@ export default function Pagination(pages) {
                 <ul className="flex list-style-none">
                     {range(1, totalPages).map((number, index) => (
                         <li key={index} className="page-item">
-                            <Link href={`/?page=${number}`}>
+                            <Link href={`/page/${number}`}>
                                 <a className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 focus:shadow-none">
                                     {number}
                                 </a>
