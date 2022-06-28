@@ -6,104 +6,79 @@ import { Layout } from "@/components/layout";
 
 export const getStaticPaths = async () => {
     const categories = await wpClient.categories();
-    console.log(categories);
     return {
         paths: categories.map((category) => ({
             params: {
-                id: category.name,
+                id: String(category.id),
             },
         })),
         fallback: false,
     };
 };
 
-
 export const getStaticProps = async ({ params }) => {
-    const posts = await wpClient.categories().id(params.name as string);
-    console.log(posts);
+    const posts = await wpClient.posts().param("categories", params.id);
+    const category_name = await wpClient.categories().id(params.id);
     return {
         props: {
-            post: posts,
+            posts: posts,
+            category_name: category_name.name,
         },
     };
 };
 
 const Category = (props) => {
-    console.log(props)
     return (
         <Layout>
             <div className="lg:col-span-2">
-                <div className="max-w-screen-md px-4 md:px-8 mx-auto">
-                    <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold text-center mb-4 md:mb-6">
-                        Our competitive advantage
-                    </h1>
-
-                    <p className="text-gray-500 sm:text-lg mb-6 md:mb-8">
-                        This is a section of some simple filler text, also known as placeholder
-                        text. It shares some characteristics of a real written text but is random or
-                        otherwise generated. It may be used to display a sample of fonts or generate
-                        text for testing. Filler text is dummy text which has no meaning however
-                        looks very similar to real text. The important factor when using filler text
-                        is that the text looks realistic otherwise it will not look very good.
-                        <br />
-                        <br />
-                        This is a section of some simple filler text, also known as placeholder
-                        text. It shares some characteristics of a real written text but is{" "}
-                        <a
-                            href="#"
-                            className="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 underline transition duration-100"
-                        >
-                            random
-                        </a>{" "}
-                        or otherwise generated. It may be used to display a sample of fonts or
-                        generate text for testing. Filler text is dummy text which has no meaning
-                        however looks very similar to real text.
-                    </p>
-
-                    <h2 className="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4">
-                        About us
+                <div className="border-b pb-4 md:pb-6">
+                    <h2 className="text-gray-800 text-lg lg:text-xl font-bold">
+                        {props.category_name}の記事一覧
                     </h2>
+                </div>
 
-                    <p className="text-gray-500 sm:text-lg mb-6 md:mb-8">
-                        This is a section of some simple filler text, also known as placeholder
-                        text. It shares some characteristics of a real written text but is random or
-                        otherwise generated. It may be used to display a sample of fonts or generate
-                        text for testing. Filler text is dummy text which has no meaning however
-                        looks very similar to real text.
-                    </p>
+                <div className="divide-y">
+                    {props.posts.map(
+                        (post) => (
+                            (
+                                <div
+                                    key={post.id}
+                                    className="flex flex-col gap-3 py-4 md:py-8 hover:text-blue-800 active:text-blue-700"
+                                >
+                                    <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
+                                        <a>
+                                            <div>
+                                                <div className="block text-sm font-bold">
+                                                    {post.title.rendered}
+                                                </div>
+                                                <span className="block font-semibold text-gray-500 text-sm ">
+                                                    {format(new Date(post.date), "yyyy-MM-dd")}
+                                                </span>
+                                            </div>
 
-                    <ul className="list-disc list-inside text-gray-500 sm:text-lg mb-6 md:mb-8">
-                        <li>This is a section of some simple filler text</li>
-                        <li>Also known as placeholder text</li>
-                        <li>It shares some characteristics of a real written text</li>
-                    </ul>
+                                            <div className="flex gap-0.5 -ml-1"></div>
 
-                    <blockquote className="text-gray-500 sm:text-lg italic border-l-4 pl-4 md:pl-6 mb-6 md:mb-8">
-                        “This is a section of some simple filler text, also known as placeholder
-                        text. It shares some characteristics of a real written text but is random or
-                        otherwise generated.”
-                    </blockquote>
+                                            <div
+                                                dangerouslySetInnerHTML={{
+                                                    __html: post.excerpt.rendered,
+                                                }}
+                                                className="text-gray-600 font-semibold"
+                                            />
+                                        </a>
+                                    </Link>
+                                </div>
+                            )
+                        )
+                    )}
+                </div>
 
-                    <div className="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8">
-                        <img
-                            src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&q=75&fit=crop&w=600&h=350"
-                            loading="lazy"
-                            alt="Photo by Minh Pham"
-                            className="w-full h-full object-cover object-center"
-                        />
-                    </div>
-
-                    <h2 className="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4">
-                        Features
-                    </h2>
-
-                    <p className="text-gray-500 sm:text-lg">
-                        This is a section of some simple filler text, also known as placeholder
-                        text. It shares some characteristics of a real written text but is random or
-                        otherwise generated. It may be used to display a sample of fonts or generate
-                        text for testing. Filler text is dummy text which has no meaning however
-                        looks very similar to real text.
-                    </p>
+                <div className="border-t pt-6">
+                    <a
+                        href="#"
+                        className="flex items-center text-blue-700 text-lg font-semibold transition duration-100 gap-0.5"
+                    >
+                        Read all reviews
+                    </a>
                 </div>
             </div>
         </Layout>
