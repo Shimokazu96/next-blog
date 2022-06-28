@@ -1,0 +1,37 @@
+import { parseISO, format } from "date-fns";
+import ja from "date-fns/locale/ja";
+import Link from "next/link";
+const ArticleList = (props) => {
+    return (
+        <div className="divide-y">
+            {props.posts.map((post) => (
+                <div
+                    key={post.id}
+                    className="flex flex-col gap-3 py-4 md:py-8 hover:text-blue-800 active:text-blue-700"
+                >
+                    <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
+                        <a>
+                            <div>
+                                <div className="block text-sm font-bold">{post.title.rendered}</div>
+                                <span className="block font-semibold text-gray-500 text-sm ">
+                                    {format(new Date(post.date), "yyyy-MM-dd")}
+                                </span>
+                            </div>
+
+                            <div className="flex gap-0.5 -ml-1"></div>
+
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: post.excerpt.rendered,
+                                }}
+                                className="text-gray-600 font-semibold"
+                            />
+                        </a>
+                    </Link>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default ArticleList;
