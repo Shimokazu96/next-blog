@@ -2,21 +2,22 @@ import { wpClient } from "@/lib/wpapi";
 import { Layout } from "@/components/layout";
 import ArticleList from "@/components/article-list";
 import ArticleTitle from "@/components/article-title";
-import Pagination from "@/components/pagination";
+import CategoryPagination from "@/components/category-pagination";
 
-export const getStaticPaths = async () => {
-    const categories = await wpClient.categories();
-    return {
-        paths: categories.map((category) => ({
-            params: {
-                id: String(category.id),
-            },
-        })),
-        fallback: false,
-    };
-};
+// export const getStaticPaths = async () => {
+//     const categories = await wpClient.categories();
+//     return {
+//         paths: categories.map((category) => ({
+//             params: {
+//                 id: String(category.id),
+//             },
+//         })),
+//         fallback: false,
+//     };
+// };
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
+    console.log(params);
     const posts = await wpClient.posts().param("categories", params.id);
     const category_name = await wpClient.categories().id(params.id);
     const pages = await wpClient
@@ -29,6 +30,7 @@ export const getStaticProps = async ({ params }) => {
     return {
         props: {
             posts: posts,
+            category_id: params.id,
             category_name: category_name.name,
             pages: pages,
         },
@@ -41,7 +43,7 @@ const Category = (props) => {
             <div className="lg:col-span-2">
                 <ArticleTitle category_name={props.category_name} />
                 <ArticleList posts={props.posts} />
-                <Pagination pages={props.pages} />
+                <CategoryPagination pages={props.pages} category_id={props.category_id} />
             </div>
         </Layout>
     );
