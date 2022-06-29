@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Props from "@/types/posts";
 
-const ArticleTitle = (props) => {
+const ArticleTitle = (props: Props) => {
     return (
         <div className="border-b pb-4 md:pb-6">
             <h2 className="text-gray-800 text-lg lg:text-xl font-bold">
