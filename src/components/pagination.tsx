@@ -1,5 +1,4 @@
 import PaginationLink from "@/components/pagination-link";
-import Link from "next/link";
 
 export default function Pagination(props) {
     const PER_PAGE = 10;
@@ -13,9 +12,11 @@ export default function Pagination(props) {
                 <ul className="flex list-style-none">
                     {range(1, totalPages).map((number, index) => (
                         <li key={index} className="page-item cursor-pointer">
-                            <Link href={`/page/${number}`}>
-                                <PaginationLink number={number} current_page={props.current_page} />
-                            </Link>
+                            <PaginationLink
+                                href={`/page/${number}`}
+                                number={number}
+                                current_page={props.current_page}
+                            />
                         </li>
                     ))}
                 </ul>

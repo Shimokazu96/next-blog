@@ -13,9 +13,11 @@ export default function CategoryPagination(props) {
                 <ul className="flex list-style-none">
                     {range(1, totalPages).map((number, index) => (
                         <li key={index} className="page-item cursor-pointer">
-                            <Link href={`/category/${props.category_id}/?page=${number}`}>
-                                <PaginationLink number={number} current_page={props.current_page} />
-                            </Link>
+                            <PaginationLink
+                                href={`/category/${props.category_id}/?page=${number}`}
+                                number={number}
+                                current_page={props.current_page}
+                            />
                         </li>
                     ))}
                 </ul>
