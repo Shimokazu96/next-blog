@@ -1,7 +1,9 @@
 import PaginationLink from "@/components/pagination-link";
 import Link from "next/link";
+import Props from "@/types/posts";
 
-export default function CategoryPagination(props) {
+
+export default function CategoryPagination(props: Props) {
     const PER_PAGE = 10;
     const totalCount = props.pages.total;
     const totalPages = props.pages.totalPages;

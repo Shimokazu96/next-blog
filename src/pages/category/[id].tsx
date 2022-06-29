@@ -3,6 +3,12 @@ import { Layout } from "@/components/layout";
 import ArticleList from "@/components/article-list";
 import ArticleTitle from "@/components/article-title";
 import CategoryPagination from "@/components/category-pagination";
+import Props from "@/types/posts";
+
+type Query = {
+    id: string;
+    page: number;
+};
 
 // export const getStaticPaths = async () => {
 //     const categories = await wpClient.categories();
@@ -16,7 +22,7 @@ import CategoryPagination from "@/components/category-pagination";
 //     };
 // };
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ query }: any) => {
     const posts = await wpClient.posts().param("categories", query.id).param("page", query.page);
     const category_name = await wpClient.categories().id(query.id);
     const pages = await wpClient
@@ -37,7 +43,7 @@ export const getServerSideProps = async ({ query }) => {
     };
 };
 
-const Category = (props) => {
+const Category = (props: Props) => {
     console.log(props);
     return (
         <Layout>

@@ -5,6 +5,7 @@ import { Layout } from "@/components/layout";
 import ArticleList from "@/components/article-list";
 import ArticleTitle from "@/components/article-title";
 import Pagination from "@/components/pagination";
+import Props from "@/types/posts";
 
 export const getStaticProps = async () => {
     const data = await wpClient.posts().perPage(10); // perPage()で表示ページ数指定
@@ -24,17 +25,15 @@ export const getStaticProps = async () => {
     };
 };
 
-const Home: NextPage = (props) => {
+const Home: NextPage<Props> = (props) => {
     return (
-        (
-            <Layout>
-                <div className="lg:col-span-2">
-                    <ArticleTitle posts={props.category_name} />
-                    <ArticleList posts={props.posts} />
-                    <Pagination pages={props.pages} />
-                </div>
-            </Layout>
-        )
+        <Layout>
+            <div className="lg:col-span-2">
+                <ArticleTitle category_name={props.category_name} />
+                <ArticleList posts={props.posts} />
+                <Pagination pages={props.pages} />
+            </div>
+        </Layout>
     );
 };
 
