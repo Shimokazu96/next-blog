@@ -1,10 +1,10 @@
+import PaginationLink from "@/components/pagination-link";
 import Link from "next/link";
 
-export default function CategoryPagination(pages) {
-  console.log(pages)
+export default function CategoryPagination(props) {
     const PER_PAGE = 10;
-    const totalCount = pages.pages.total;
-    const totalPages = pages.pages.totalPages;
+    const totalCount = props.pages.total;
+    const totalPages = props.pages.totalPages;
     const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
 
     return (
@@ -12,11 +12,9 @@ export default function CategoryPagination(pages) {
             <nav aria-label="Page navigation example">
                 <ul className="flex list-style-none">
                     {range(1, totalPages).map((number, index) => (
-                        <li key={index} className="page-item">
-                            <Link href={`/category/${pages.category_id}/?page=${number}`}>
-                                <a className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 focus:shadow-none">
-                                    {number}
-                                </a>
+                        <li key={index} className="page-item cursor-pointer">
+                            <Link href={`/category/${props.category_id}/?page=${number}`}>
+                                <PaginationLink number={number} current_page={props.current_page} />
                             </Link>
                         </li>
                     ))}

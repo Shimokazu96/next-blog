@@ -26,7 +26,6 @@ export const getStaticProps = async () => {
 
 const Home: NextPage = (props) => {
     return (
-        console.log(props),
         (
             <Layout>
                 <div className="lg:col-span-2">

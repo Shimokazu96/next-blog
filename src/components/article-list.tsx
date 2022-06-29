@@ -7,7 +7,7 @@ const ArticleList = (props) => {
             {props.posts.map((post) => (
                 <div
                     key={post.id}
-                    className="flex flex-col gap-3 py-4 md:py-8 hover:text-blue-800 active:text-blue-700"
+                    className="flex flex-col gap-3 py-4 md:py-8 hover:bg-gray-100 active:bg-gray-100"
                 >
                     <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
                         <a>

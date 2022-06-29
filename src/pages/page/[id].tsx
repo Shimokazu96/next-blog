@@ -34,6 +34,7 @@ export const getStaticProps = async (context) => {
         props: {
             posts: posts,
             category_name: "",
+            current_page: id ? id : 1,
             pages: pages,
         },
     };
@@ -45,7 +46,7 @@ const Category = (props) => {
             <div className="lg:col-span-2">
                 <ArticleTitle category_name={props.category_name} />
                 <ArticleList posts={props.posts} />
-                <Pagination pages={props.pages} />
+                <Pagination pages={props.pages} current_page={props.current_page} />
             </div>
         </Layout>
     );
