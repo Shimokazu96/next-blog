@@ -8,31 +8,31 @@ export default function Footer() {
                     {/* <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 md:gap-6 mb-4">
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             About
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             Investor Relations
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             Jobs
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             Press
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             Blog
                         </a>
@@ -41,7 +41,7 @@ export default function Footer() {
                         <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -58,7 +58,7 @@ export default function Footer() {
                         <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -75,7 +75,7 @@ export default function Footer() {
                         {/* <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -92,7 +92,7 @@ export default function Footer() {
                         <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"

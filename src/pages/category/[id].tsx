@@ -8,7 +8,7 @@ import CategoryPagination from "@/components/category-pagination";
 //     const categories = await wpClient.categories();
 //     return {
 //         paths: categories.map((category) => ({
-//             params: {
+//             query: {
 //                 id: String(category.id),
 //             },
 //         })),
@@ -16,13 +16,12 @@ import CategoryPagination from "@/components/category-pagination";
 //     };
 // };
 
-export const getServerSideProps = async ({ params }) => {
-    console.log(params);
-    const posts = await wpClient.posts().param("categories", params.id);
-    const category_name = await wpClient.categories().id(params.id);
+export const getServerSideProps = async ({ query }) => {
+    const posts = await wpClient.posts().param("categories", query.id).param("page", query.page);
+    const category_name = await wpClient.categories().id(query.id);
     const pages = await wpClient
         .posts()
-        .param("categories", params.id)
+        .param("categories", query.id)
         .get()
         .then((response) => {
             return JSON.parse(JSON.stringify(response["_paging"]));
@@ -30,7 +29,8 @@ export const getServerSideProps = async ({ params }) => {
     return {
         props: {
             posts: posts,
-            category_id: params.id,
+            category_id: query.id,
+            current_page: query.page ? query.page : 1,
             category_name: category_name.name,
             pages: pages,
         },
@@ -38,12 +38,17 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 const Category = (props) => {
+    console.log(props);
     return (
         <Layout>
             <div className="lg:col-span-2">
                 <ArticleTitle category_name={props.category_name} />
                 <ArticleList posts={props.posts} />
-                <CategoryPagination pages={props.pages} category_id={props.category_id} />
+                <CategoryPagination
+                    pages={props.pages}
+                    category_id={props.category_id}
+                    current_page={props.current_page}
+                />
             </div>
         </Layout>
     );
