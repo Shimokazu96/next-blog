@@ -5,43 +5,43 @@ export default function Footer() {
         <div className="bg-white pt-4 sm:pt-10 lg:pt-12">
             <footer className="max-w-screen-2xl px-4 md:px-8 mx-auto">
                 <div className="flex flex-col items-center border-t pt-6">
-                    <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 md:gap-6 mb-4">
+                    {/* <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 md:gap-6 mb-4">
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             About
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             Investor Relations
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             Jobs
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700 font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500 font-semibold transition duration-100"
                         >
                             Press
                         </a>
                         <a
                             href="#"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             Blog
                         </a>
-                    </nav>
+                    </nav> */}
                     <div className="flex gap-4">
                         <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -58,7 +58,7 @@ export default function Footer() {
                         <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -72,10 +72,10 @@ export default function Footer() {
                             </svg>
                         </a>
 
-                        <a
+                        {/* <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -87,12 +87,12 @@ export default function Footer() {
                             >
                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>
-                        </a>
+                        </a> */}
 
                         <a
                             href="#"
                             target="_blank"
-                            className="text-gray-800 hover:text-blue-800 active:text-blue-700  font-semibold transition duration-100"
+                            className="text-gray-800 hover:text-blue-500 active:text-blue-500  font-semibold transition duration-100"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -109,7 +109,7 @@ export default function Footer() {
                 </div>
 
                 <div className="text-gray-800 font-semibold text-sm text-center py-8">
-                    © 2021 - Present Flowrift. All rights reserved.
+                    © 2021 - Present Sauna Bouya. All rights reserved.
                 </div>
             </footer>
         </div>

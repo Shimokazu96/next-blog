@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import ArticleList from "@/components/article-list";
 import ArticleTitle from "@/components/article-title";
 import { Layout } from "@/components/layout";
@@ -10,28 +9,46 @@ type Props = {
     posts: any;
     pages: any;
     current_page: number;
+    category_id: number;
 };
 
-export const getStaticProps = async () => {
-    const data = await wpClient.posts().perPage(10); // perPage()で表示ページ数指定
+export const getStaticPaths = async () => {
     const pages = await wpClient
         .posts()
         .get()
         .then((response) => {
             return JSON.parse(JSON.stringify(response["_paging"]));
         });
+    const totalCount = pages.total;
+    const totalPages = pages.totalPages;
+    const range = (start:number, end:number) => [...Array(end - start + 1)].map((_, i) => start + i);
+    const paths = range(1, totalPages).map((number) => String(`/page/${number}`));
+    return {
+        paths: paths,
+        fallback: false,
+    };
+};
 
+export const getStaticProps = async (context: any) => {
+    const id:number = context.params.id;
+    const posts = await wpClient.posts().param("page", id);
+    const pages = await wpClient
+        .posts()
+        .get()
+        .then((response) => {
+            return JSON.parse(JSON.stringify(response["_paging"]));
+        });
     return {
         props: {
-            posts: data,
+            posts: posts,
             category_name: "",
-            current_page: 1,
+            current_page: id ? id : 1,
             pages: pages,
         },
     };
 };
 
-const Home: NextPage<Props> = (props) => {
+const Category = (props: Props) => {
     return (
         <Layout>
             <div className="lg:col-span-2">
@@ -43,4 +60,4 @@ const Home: NextPage<Props> = (props) => {
     );
 };
 
-export default Home;
+export default Category;
