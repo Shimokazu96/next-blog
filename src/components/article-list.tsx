@@ -1,9 +1,9 @@
 import { parseISO, format } from "date-fns";
 import ja from "date-fns/locale/ja";
 import Link from "next/link";
-import Props from "@/types/posts";
+import { Posts } from "@/types/types";
 
-const ArticleList = (props: Props) => {
+const ArticleList = (props: Posts) => {
     return (
         <div className="divide-y">
             {props.posts.map((post) => (

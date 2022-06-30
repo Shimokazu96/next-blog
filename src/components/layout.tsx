@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { useState, useEffect } from "react";
-import { wpClient } from "@/lib/wpapi";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
+import { wpClient } from "@/lib/wpapi";
 
 type LayoutProps = Required<{
     readonly children: ReactElement;

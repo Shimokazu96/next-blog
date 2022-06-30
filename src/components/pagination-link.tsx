@@ -1,6 +1,11 @@
 import Link from "next/link";
+type Props = {
+    href: string;
+    number: number;
+    current_page: number;
+};
 
-const PaginationLink = (props) => {
+const PaginationLink = (props: Props) => {
     return (
         <Link href={props.href}>
             <a

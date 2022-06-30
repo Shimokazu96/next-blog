@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { Categories } from "@/types/types";
 
-const Sidebar = (props) => {
+const Sidebar = (props: Categories) => {
     return (
         <div className="lg:mx-auto">
             <div className="text-gray-800 font-bold tracking-widest text-xl uppercase mb-4">
