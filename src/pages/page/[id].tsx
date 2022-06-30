@@ -1,8 +1,16 @@
-import { wpClient } from "@/lib/wpapi";
-import { Layout } from "@/components/layout";
 import ArticleList from "@/components/article-list";
 import ArticleTitle from "@/components/article-title";
+import { Layout } from "@/components/layout";
 import Pagination from "@/components/pagination";
+import { wpClient } from "@/lib/wpapi";
+
+type Props = {
+    category_name: string;
+    posts: any;
+    pages: any;
+    current_page: number;
+    category_id: number;
+};
 
 export const getStaticPaths = async () => {
     const pages = await wpClient
@@ -13,7 +21,7 @@ export const getStaticPaths = async () => {
         });
     const totalCount = pages.total;
     const totalPages = pages.totalPages;
-    const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+    const range = (start:number, end:number) => [...Array(end - start + 1)].map((_, i) => start + i);
     const paths = range(1, totalPages).map((number) => String(`/page/${number}`));
     return {
         paths: paths,
@@ -21,8 +29,8 @@ export const getStaticPaths = async () => {
     };
 };
 
-export const getStaticProps = async (context) => {
-    const id = context.params.id;
+export const getStaticProps = async (context: any) => {
+    const id:number = context.params.id;
     const posts = await wpClient.posts().param("page", id);
     const pages = await wpClient
         .posts()
@@ -40,7 +48,7 @@ export const getStaticProps = async (context) => {
     };
 };
 
-const Category = (props) => {
+const Category = (props: Props) => {
     return (
         <Layout>
             <div className="lg:col-span-2">

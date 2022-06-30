@@ -1,5 +1,7 @@
-import Props from "@/types/posts";
-
+import { Posts } from "@/types/types";
+type Props = {
+    category_name: string;
+};
 const ArticleTitle = (props: Props) => {
     return (
         <div className="border-b pb-4 md:pb-6">

@@ -1,10 +1,12 @@
 import PaginationLink from "@/components/pagination-link";
+import { Paginate } from "@/types/types";
 
-export default function Pagination(props) {
+export default function Pagination(props: Paginate) {
     const PER_PAGE = 10;
     const totalCount = props.pages.total;
     const totalPages = props.pages.totalPages;
-    const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+    const range = (start: number, end: number) =>
+        [...Array(end - start + 1)].map((_, i) => start + i);
 
     return (
         <div className="flex justify-center">

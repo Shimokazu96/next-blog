@@ -1,14 +1,16 @@
 import PaginationLink from "@/components/pagination-link";
-import Link from "next/link";
-import Props from "@/types/posts";
+import { CategoryPaginate } from "@/types/types";
 
 
-export default function CategoryPagination(props: Props) {
+export default function CategoryPagination(props: CategoryPaginate) {
     const PER_PAGE = 10;
     const totalCount = props.pages.total;
     const totalPages = props.pages.totalPages;
-    const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
-
+    const range = (start: number, end: number) =>
+        [...Array(end - start + 1)].map((_, i) => start + i);
+    type Props = {
+        category_name: string;
+    };
     return (
         <div className="flex justify-center">
             <nav aria-label="Page navigation example">
