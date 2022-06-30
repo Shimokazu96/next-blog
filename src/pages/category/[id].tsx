@@ -35,7 +35,6 @@ export const getServerSideProps = async ({ query }: any) => {
 };
 
 const Category = (props: Props) => {
-    console.log(props);
     return (
         <Layout>
             <div className="lg:col-span-2">
