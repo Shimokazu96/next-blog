@@ -20,10 +20,6 @@ export type Pages = {
 };
 
 export type Paginate = {
-    // href: string;
-    // number: number;
-    // category_name: string;
-    // category_id: number;
     current_page: number;
     pages: {
         total: number;
