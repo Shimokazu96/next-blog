@@ -7,7 +7,10 @@ import { wpClient } from "@/lib/wpapi";
 type Props = {
     category_name: string;
     posts: any;
-    pages: any;
+    pages: {
+        total: number;
+        totalPages: number;
+    };
     current_page: number;
     category_id: number;
 };
@@ -25,7 +28,7 @@ export const getStaticPaths = async () => {
     const paths = range(1, totalPages).map((number) => String(`/page/${number}`));
     return {
         paths: paths,
-        fallback: false,
+        fallback: true,
     };
 };
 
@@ -44,6 +47,7 @@ export const getStaticProps = async (context: any) => {
             category_name: "",
             current_page: id ? id : 1,
             pages: pages,
+            revalidate: 30,
         },
     };
 };
