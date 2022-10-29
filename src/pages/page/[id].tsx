@@ -1,7 +1,9 @@
 import ArticleList from "@/components/article-list";
 import ArticleTitle from "@/components/article-title";
-import { Layout } from "@/components/layout";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 import Pagination from "@/components/pagination";
+import Sidebar from "@/components/sidebar";
 import { wpClient } from "@/lib/wpapi";
 
 type Props = {
@@ -13,6 +15,7 @@ type Props = {
     };
     current_page: number;
     category_id: number;
+    categories: any;
 };
 
 export const getStaticPaths = async () => {
@@ -36,6 +39,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
     const id: number = context.params.id;
     const posts = await wpClient.posts().param("page", id);
+    const categories = await wpClient.categories();
     const pages = await wpClient
         .posts()
         .get()
@@ -45,6 +49,7 @@ export const getStaticProps = async (context: any) => {
     return {
         props: {
             posts: posts,
+            categories: categories,
             category_name: "",
             current_page: id ? id : 1,
             pages: pages,
@@ -54,13 +59,22 @@ export const getStaticProps = async (context: any) => {
 
 const Category = (props: Props) => {
     return (
-        <Layout>
-            <div className="lg:col-span-2">
-                <ArticleTitle category_name={props.category_name} />
-                <ArticleList posts={props.posts} />
-                <Pagination pages={props.pages} current_page={props.current_page} />
+        <>
+            <Header categories={props.categories} />
+            <div className="bg-white py-6 sm:py-8 lg:py-12">
+                <div className="max-w-screen-lg px-4 md:px-8 mx-auto">
+                    <div className="grid grid-cols-1  md:grid-cols-1 lg:grid-cols-3 gap-8">
+                        <Sidebar categories={props.categories} />
+                        <div className="lg:col-span-2">
+                            <ArticleTitle category_name={props.category_name} />
+                            <ArticleList posts={props.posts} />
+                            <Pagination pages={props.pages} current_page={props.current_page} />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </Layout>
+            <Footer />
+        </>
     );
 };
 
