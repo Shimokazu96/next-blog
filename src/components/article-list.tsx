@@ -12,7 +12,7 @@ const ArticleList = (props: Posts) => {
                     className="flex flex-col gap-3 py-4 md:py-8 hover:bg-gray-100 active:bg-gray-100"
                 >
                     <Link href={`${process.env.API_URL}/posts/${post.slug}`}>
-                        <a>
+                        <a target="_blank" rel="noopener noreferrer">
                             <div>
                                 <div className="block text-sm font-bold">{post.title.rendered}</div>
                                 <span className="block font-semibold text-gray-500 text-sm ">
